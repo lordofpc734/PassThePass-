@@ -6,7 +6,7 @@ import csv
 import clipboard
 from time import sleep
 import win32clipboard
-search = input("Welcome to Pass The Pass!\n\nEnter website: ")
+search = input("Welcome to Pass The Pass?!\n\nEnter website: ")
 for i in csv.reader(open('pass.csv','r')):
     if i[0] == search:
         print("Username: " + i[2])
