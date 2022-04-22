@@ -1,20 +1,8 @@
-#search = input("website: ");__import__('clipboard').copy([i[1] for i in __import__('csv').reader(open('passwords.tsv','r')) if i[0] == search])
-#search = input("website: ")
-#print([i[2] for i in __import__('csv').reader(open('pass.csv','r')) if i[0] == search])
-#print("password");print([i[1] for i in __import__('csv').reader(open('pass.csv','r')) if i[0] == search])
-import csv
-import subprocess
-import clipboard
-from time import sleep
-import win32clipboard
 from fileinput import filename
 from cryptography.fernet import Fernet
 import os
+filename = "passcopy.csv"
 extns = ".safe"
-filename_1 = "passcopy.csv"
-filename_2 = filename_1 + extns
-
-
 def write_key():
     """
     Generates a key and save it into a file
@@ -56,25 +44,11 @@ def decrypt(filename, key):
     # write the original file
     with open(filename, "wb") as file:
         file.write(decrypted_data)
-#write_key()
-#key = load_key()
-#print("Decrypting CSV Database...")
+write_key()
+key = load_key()
+encrypt(filename, key)
+os.rename(filename, filename + extns)
+#filename_2 = filename + extns
+
 #decrypt(filename_2, key)
-#os.rename(filename_2, filename_1)
-search = input("Welcome to Pass The Pass!\n\nEnter website: ")
-for i in csv.reader(open("passcopy.csv")):
-  if i[0] == search:
-    print("Username: {}".format(i[2]))
-    clipboard.copy(i[2])
-    input("Press [enter] to copy pass...")
-    print("Password: {}".format(i[1]))
-    clipboard.copy(i[1])
-    input("Press [enter] to clear clipboard & encrypt CSV db...")
-    key = load_key()
-    encrypt(filename_1, key)
-    #subprocess.call("clr_clipbrd.py", shell=True)
-    exit(0)
-print("{} not found".format(search))
-#os.rename(filename_1, filename_2)
-
-
+#os.rename(filename_2, filename)
