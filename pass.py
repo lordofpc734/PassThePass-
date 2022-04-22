@@ -75,6 +75,7 @@ for i in csv.reader(open("passcopy.csv")):
     #subprocess.call("clr_clipbrd.py", shell=True)
     exit(0)
 print("{} not found".format(search))
+print("Encrypting CSV db...")
+key = load_key()
+encrypt(filename_1, key)
 #os.rename(filename_1, filename_2)
-
-
